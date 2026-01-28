@@ -71,7 +71,7 @@ class Site_RPG_REST_API {
 			array(
 				'methods'             => 'POST',
 				'callback'            => array( $this, 'complete_game' ),
-				'permission_callback' => '__return_true',
+				'permission_callback' => array( $this, 'verify_action_token' ),
 				'args'                => array(
 					'xp'            => array(
 						'required'          => true,
@@ -103,7 +103,7 @@ class Site_RPG_REST_API {
 			array(
 				'methods'             => 'POST',
 				'callback'            => array( $this, 'visitor_action' ),
-				'permission_callback' => '__return_true',
+				'permission_callback' => array( $this, 'verify_action_token' ),
 				'args'                => array(
 					'action' => array(
 						'required'          => true,
@@ -257,6 +257,86 @@ class Site_RPG_REST_API {
 			);
 		}
 		return true;
+	}
+
+	/**
+	 * Verify action token for public endpoints.
+	 *
+	 * This provides anti-automation protection by requiring a token
+	 * that is generated server-side and must be included with requests.
+	 *
+	 * @param WP_REST_Request $request Request object.
+	 * @return bool|WP_Error True if valid, WP_Error if invalid.
+	 */
+	public function verify_action_token( $request ) {
+		$token = $request->get_header( 'X-Site-RPG-Token' );
+
+		if ( empty( $token ) ) {
+			return new WP_Error(
+				'missing_token',
+				'Action token is required.',
+				array( 'status' => 403 )
+			);
+		}
+
+		// Token format: timestamp:hash
+		$parts = explode( ':', $token );
+		if ( count( $parts ) !== 2 ) {
+			return new WP_Error(
+				'invalid_token',
+				'Invalid action token format.',
+				array( 'status' => 403 )
+			);
+		}
+
+		list( $timestamp, $hash ) = $parts;
+		$timestamp = (int) $timestamp;
+
+		// Token must be within 24-hour window.
+		$current_time = time();
+		if ( $timestamp < ( $current_time - DAY_IN_SECONDS ) || $timestamp > ( $current_time + 300 ) ) {
+			return new WP_Error(
+				'expired_token',
+				'Action token has expired.',
+				array( 'status' => 403 )
+			);
+		}
+
+		// Verify hash.
+		$expected_hash = $this->generate_token_hash( $timestamp );
+		if ( ! hash_equals( $expected_hash, $hash ) ) {
+			return new WP_Error(
+				'invalid_token',
+				'Invalid action token.',
+				array( 'status' => 403 )
+			);
+		}
+
+		return true;
+	}
+
+	/**
+	 * Generate action token hash.
+	 *
+	 * @param int $timestamp Unix timestamp.
+	 * @return string Hash string.
+	 */
+	private function generate_token_hash( $timestamp ) {
+		$ip   = $this->get_client_ip();
+		$salt = wp_salt( 'auth' );
+		return hash_hmac( 'sha256', $ip . '|' . $timestamp, $salt );
+	}
+
+	/**
+	 * Generate a full action token for the frontend.
+	 *
+	 * @return string Token in format "timestamp:hash".
+	 */
+	public static function generate_action_token() {
+		$instance  = self::get_instance();
+		$timestamp = time();
+		$hash      = $instance->generate_token_hash( $timestamp );
+		return $timestamp . ':' . $hash;
 	}
 
 	/**
@@ -682,20 +762,39 @@ class Site_RPG_REST_API {
 	/**
 	 * Get client IP address.
 	 *
+	 * Uses REMOTE_ADDR by default to prevent IP spoofing via headers.
+	 * Only uses X-Forwarded-For if the server is behind a trusted proxy
+	 * (configured via 'site_rpg_trusted_proxies' filter).
+	 *
 	 * @return string
 	 */
 	private function get_client_ip() {
-		$ip = '';
+		$remote_addr = ! empty( $_SERVER['REMOTE_ADDR'] )
+			? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) )
+			: '';
 
-		if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
-			$ip = sanitize_text_field( wp_unslash( $_SERVER['HTTP_CLIENT_IP'] ) );
-		} elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-			$ip = sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_FORWARDED_FOR'] ) );
-		} elseif ( ! empty( $_SERVER['REMOTE_ADDR'] ) ) {
-			$ip = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) );
+		/**
+		 * Filter to define trusted proxy IP addresses.
+		 *
+		 * Only when REMOTE_ADDR matches a trusted proxy will X-Forwarded-For be used.
+		 *
+		 * @param array $trusted_proxies Array of trusted proxy IPs (default: empty).
+		 */
+		$trusted_proxies = apply_filters( 'site_rpg_trusted_proxies', array() );
+
+		// Only trust forwarded headers if request is from a known proxy.
+		if ( ! empty( $trusted_proxies ) && in_array( $remote_addr, $trusted_proxies, true ) ) {
+			if ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+				$forwarded = sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_FORWARDED_FOR'] ) );
+				// Take the first (client) IP from the chain.
+				$ips = array_map( 'trim', explode( ',', $forwarded ) );
+				if ( ! empty( $ips[0] ) && filter_var( $ips[0], FILTER_VALIDATE_IP ) ) {
+					return $ips[0];
+				}
+			}
 		}
 
-		return $ip;
+		return $remote_addr;
 	}
 
 	/**

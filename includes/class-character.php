@@ -807,24 +807,33 @@ class Site_RPG_Character {
 	/**
 	 * Get client IP address.
 	 *
+	 * Uses REMOTE_ADDR by default to prevent IP spoofing via headers.
+	 * Only uses X-Forwarded-For if the server is behind a trusted proxy
+	 * (configured via 'site_rpg_trusted_proxies' filter).
+	 *
 	 * @return string IP address.
 	 */
 	private static function get_client_ip() {
-		$ip = '';
+		$remote_addr = ! empty( $_SERVER['REMOTE_ADDR'] )
+			? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) )
+			: '';
 
-		if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
-			$ip = sanitize_text_field( wp_unslash( $_SERVER['HTTP_CLIENT_IP'] ) );
-		} elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-			$ip = sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_FORWARDED_FOR'] ) );
-			// Take first IP if multiple.
-			if ( strpos( $ip, ',' ) !== false ) {
-				$ip = trim( explode( ',', $ip )[0] );
+		/** This filter is documented in includes/class-rest-api.php */
+		$trusted_proxies = apply_filters( 'site_rpg_trusted_proxies', array() );
+
+		// Only trust forwarded headers if request is from a known proxy.
+		if ( ! empty( $trusted_proxies ) && in_array( $remote_addr, $trusted_proxies, true ) ) {
+			if ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+				$forwarded = sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_FORWARDED_FOR'] ) );
+				// Take the first (client) IP from the chain.
+				$ips = array_map( 'trim', explode( ',', $forwarded ) );
+				if ( ! empty( $ips[0] ) && filter_var( $ips[0], FILTER_VALIDATE_IP ) ) {
+					return $ips[0];
+				}
 			}
-		} elseif ( ! empty( $_SERVER['REMOTE_ADDR'] ) ) {
-			$ip = sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) );
 		}
 
-		return $ip;
+		return $remote_addr;
 	}
 
 	/**

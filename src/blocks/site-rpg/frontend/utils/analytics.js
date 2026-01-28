@@ -12,12 +12,19 @@ export function trackVisitorAction( action ) {
 
 	localStorage.setItem( key, now.toString() );
 
+	const headers = {
+		'Content-Type': 'application/json',
+		'X-WP-Nonce': window.siteRpgData.nonce,
+	};
+
+	// Include action token for anti-abuse protection.
+	if ( window.siteRpgData.actionToken ) {
+		headers[ 'X-Site-RPG-Token' ] = window.siteRpgData.actionToken;
+	}
+
 	fetch( window.siteRpgData.restUrl + 'visitor/action', {
 		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			'X-WP-Nonce': window.siteRpgData.nonce,
-		},
+		headers,
 		body: JSON.stringify( { action } ),
 	} ).catch( () => {} );
 }

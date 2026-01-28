@@ -425,12 +425,19 @@ export class GameManager {
 		if ( ! window.siteRpgData?.restUrl ) return;
 
 		try {
+			const headers = {
+				'Content-Type': 'application/json',
+				'X-WP-Nonce': window.siteRpgData.nonce,
+			};
+
+			// Include action token for anti-abuse protection.
+			if ( window.siteRpgData.actionToken ) {
+				headers[ 'X-Site-RPG-Token' ] = window.siteRpgData.actionToken;
+			}
+
 			const response = await fetch( window.siteRpgData.restUrl + 'game/complete', {
 				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					'X-WP-Nonce': window.siteRpgData.nonce,
-				},
+				headers,
 				body: JSON.stringify( {
 					xp: this.score,
 					game: this.selectedGameType,

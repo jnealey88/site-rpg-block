@@ -74,11 +74,12 @@ function site_rpg_block_enqueue_assets() {
 	$xp_tracker = Site_RPG_XP_Tracker::get_instance();
 
 	$data = array(
-		'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
-		'restUrl'  => rest_url( 'site-rpg/v1/' ),
-		'nonce'    => wp_create_nonce( 'wp_rest' ),
-		'siteData' => $xp_tracker->get_site_stats(),
-		'userId'   => get_current_user_id(),
+		'ajaxUrl'     => admin_url( 'admin-ajax.php' ),
+		'restUrl'     => rest_url( 'site-rpg/v1/' ),
+		'nonce'       => wp_create_nonce( 'wp_rest' ),
+		'actionToken' => Site_RPG_REST_API::generate_action_token(),
+		'siteData'    => $xp_tracker->get_site_stats(),
+		'userId'      => get_current_user_id(),
 	);
 
 	// Add character data if user is logged in.
