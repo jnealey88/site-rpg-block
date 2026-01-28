@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build artifacts (uncomment if you don't want to commit built files)
+# build/
+
+# WordPress environment
+.wp-env/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Package files
+*.zip
+
+# Local config
+.env
+.env.local

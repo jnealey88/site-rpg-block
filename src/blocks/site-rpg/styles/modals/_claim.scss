@@ -1,0 +1,141 @@
+/* Claim Guest Progress Modal */
+.site-rpg-claim-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.85);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 10001;
+	padding: 20px;
+	animation: couponFadeIn 0.3s ease-out;
+}
+
+.site-rpg-claim-modal__content {
+	background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+	border-radius: 20px;
+	padding: 28px 32px;
+	text-align: center;
+	max-width: 380px;
+	width: 100%;
+	box-shadow:
+		0 20px 60px rgba(0, 0, 0, 0.5),
+		0 0 0 1px rgba(255, 255, 255, 0.1);
+	animation: couponSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+	position: relative;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 4px;
+		background: linear-gradient(90deg, #3498db, #9b59b6, #3498db);
+	}
+}
+
+.site-rpg-claim-modal__icon {
+	font-size: 48px;
+	margin-bottom: 12px;
+}
+
+.site-rpg-claim-modal__title {
+	font-size: 22px;
+	font-weight: 700;
+	color: #fff;
+	margin: 0 0 8px;
+}
+
+.site-rpg-claim-modal__desc {
+	font-size: 14px;
+	color: #8892b0;
+	margin: 0 0 16px;
+	line-height: 1.4;
+}
+
+.site-rpg-claim-modal__stats {
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 12px;
+	padding: 16px;
+	margin-bottom: 16px;
+}
+
+.site-rpg-claim-modal__stat {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 0;
+
+	&:not(:last-child) {
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.claim-stat-label {
+		color: #8892b0;
+		font-size: 14px;
+	}
+
+	.claim-xp,
+	.claim-games {
+		color: #f39c12;
+		font-size: 18px;
+		font-weight: 700;
+	}
+}
+
+.site-rpg-claim-modal__question {
+	font-size: 14px;
+	color: #ccd6f6;
+	margin: 0 0 20px;
+}
+
+.site-rpg-claim-modal__buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.site-rpg-claim-modal__btn {
+	display: block;
+	width: 100%;
+	padding: 14px 24px;
+	border: none;
+	border-radius: 8px;
+	font-size: 15px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: all 0.2s ease;
+
+	&--claim {
+		background: linear-gradient(135deg, #27ae60, #1e8449);
+		color: #fff;
+		box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
+
+		&:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 6px 20px rgba(39, 174, 96, 0.5);
+		}
+	}
+
+	&--skip {
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		color: #8892b0;
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.15);
+			color: #fff;
+		}
+	}
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+	.site-rpg-claim-modal__content {
+		padding: 20px;
+	}
+}

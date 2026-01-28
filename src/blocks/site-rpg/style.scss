@@ -1,0 +1,48 @@
+/**
+ * Site RPG Block - Frontend Styles
+ *
+ * Organized into modular SCSS partials for maintainability.
+ */
+
+// Foundation
+@use 'styles/variables';
+@use 'styles/animations';
+
+// Base styles
+@use 'styles/base/block';
+@use 'styles/base/card';
+
+// Components
+@use 'styles/components/header';
+@use 'styles/components/xp-bar';
+@use 'styles/components/stats';
+@use 'styles/components/game-button';
+@use 'styles/components/create-character';
+
+// Game screens
+@use 'styles/games/canvas';
+@use 'styles/games/game-select';
+@use 'styles/games/difficulty';
+@use 'styles/games/class-select';
+@use 'styles/games/game-start';
+@use 'styles/games/game-over';
+
+// Game controls
+@use 'styles/games/hack-slash';
+@use 'styles/games/runner';
+@use 'styles/games/d20-combat';
+@use 'styles/games/adventure';
+
+// Modals
+@use 'styles/modals/coupon';
+@use 'styles/modals/levelup';
+@use 'styles/modals/claim';
+@use 'styles/modals/reset';
+@use 'styles/modals/creation-wizard';
+@use 'styles/modals/rewards';
+
+// States
+@use 'styles/states/playing';
+
+// Responsive
+@use 'styles/responsive';

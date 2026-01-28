@@ -1,0 +1,47 @@
+/* Game Over */
+.site-rpg-game-over {
+	text-align: center;
+	padding: 24px;
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 8px;
+	margin-top: 16px;
+
+	h4 {
+		margin: 0 0 12px;
+		font-size: 24px;
+		color: #f39c12;
+	}
+}
+
+.site-rpg-game-over__xp {
+	font-size: 36px;
+	font-weight: 700;
+	color: #27ae60;
+	margin: 16px 0;
+}
+
+.site-rpg-game-over__message {
+	color: #8892b0;
+	margin-bottom: 20px;
+}
+
+/* XP gain notification */
+.site-rpg-xp-popup {
+	position: absolute;
+	font-size: 18px;
+	font-weight: 700;
+	color: #27ae60;
+	pointer-events: none;
+	animation: xpFloat 1s ease-out forwards;
+}
+
+@keyframes xpFloat {
+	0% {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(-30px) scale(1.2);
+	}
+}

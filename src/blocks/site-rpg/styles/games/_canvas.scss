@@ -1,0 +1,86 @@
+/* Game Canvas Area */
+.site-rpg-game {
+	margin-top: 16px;
+	background: #0a0a0a;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.site-rpg-game__hud {
+	display: flex;
+	justify-content: space-between;
+	padding: 8px 12px;
+	background: rgba(0, 0, 0, 0.5);
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.site-rpg-game__wave {
+	color: #3498db;
+}
+
+.site-rpg-game__score {
+	color: #f39c12;
+}
+
+.site-rpg-game__health {
+	letter-spacing: 2px;
+}
+
+.site-rpg-game__canvas {
+	display: block;
+	width: 100%;
+	height: auto;
+	background: #111;
+}
+
+.site-rpg-game__controls {
+	display: flex;
+	justify-content: center;
+	gap: 12px;
+	padding: 8px;
+	background: rgba(0, 0, 0, 0.5);
+
+	button {
+		background: rgba(255, 255, 255, 0.1);
+		border: none;
+		padding: 8px 16px;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 16px;
+		transition: background 0.2s;
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.2);
+		}
+	}
+}
+
+/* Desktop controls hint */
+.site-rpg-game__hint-desktop {
+	text-align: center;
+	font-size: 12px;
+	color: #8892b0;
+	margin: 8px 0 0;
+	padding: 0 12px 8px;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
+}
+
+/* Back button for game screens */
+.site-rpg-game__back {
+	background: rgba(255, 255, 255, 0.1);
+	border: none;
+	padding: 8px 16px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 14px;
+	color: #fff;
+	transition: background 0.2s;
+
+	&:hover {
+		background: rgba(255, 255, 255, 0.2);
+	}
+}

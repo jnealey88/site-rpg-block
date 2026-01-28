@@ -1,0 +1,112 @@
+/* Mobile Responsive Enhancements */
+@media (max-width: 480px) {
+	.site-rpg-card {
+		padding: 16px;
+	}
+
+	.site-rpg-card__header {
+		gap: 14px;
+		padding-bottom: 16px;
+	}
+
+	.site-rpg-card__avatar {
+		width: 56px;
+		height: 56px;
+	}
+
+	.site-rpg-card__avatar-icon {
+		font-size: 28px;
+	}
+
+	.site-rpg-card__avatar-level {
+		width: 22px;
+		height: 22px;
+		font-size: 10px;
+	}
+
+	.site-rpg-card__avatar-ring {
+		top: -4px;
+		left: -4px;
+		right: -4px;
+		bottom: -4px;
+	}
+
+	.site-rpg-card__name {
+		font-size: 18px;
+	}
+
+	.site-rpg-card__level-badge {
+		font-size: 12px;
+	}
+
+	.site-rpg-card__stats {
+		padding: 12px;
+		gap: 8px;
+	}
+
+	.site-rpg-card__stat {
+		gap: 10px;
+		padding: 6px;
+	}
+
+	.site-rpg-card__stat-icon {
+		width: 32px;
+		height: 32px;
+	}
+
+	.site-rpg-card__stat-emoji {
+		font-size: 16px;
+	}
+
+	.site-rpg-card__stat-bar {
+		height: 12px;
+	}
+
+	.site-rpg-card__stat-label {
+		font-size: 11px;
+	}
+
+	.site-rpg-card__stat-value {
+		font-size: 14px;
+	}
+
+	.site-rpg-card__stat-tooltip {
+		left: 10px;
+		right: 10px;
+		transform: translateY(5px);
+		min-width: auto;
+		max-width: none;
+
+		&::after {
+			left: 30px;
+		}
+	}
+
+	.site-rpg-game-select__btn {
+		padding: 16px 12px;
+	}
+
+	.site-rpg-game-select__icon {
+		font-size: 32px;
+	}
+
+	.site-rpg-game-select__icon-wrapper {
+		width: 50px;
+		height: 50px;
+	}
+
+	.site-rpg-game-select__title {
+		font-size: 13px;
+	}
+
+	.site-rpg-game-select__stats {
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 6px;
+	}
+
+	.site-rpg-game-select__stat {
+		font-size: 10px;
+		padding: 3px 6px;
+	}
+}

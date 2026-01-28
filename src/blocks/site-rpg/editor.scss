@@ -1,0 +1,14 @@
+/**
+ * Site RPG Block - Editor Styles
+ */
+
+.site-rpg-block {
+	// Editor-specific styles
+	.site-rpg-card__game-btn:disabled {
+		opacity: 0.7;
+	}
+
+	.site-rpg-card__game-hint {
+		font-style: italic;
+	}
+}

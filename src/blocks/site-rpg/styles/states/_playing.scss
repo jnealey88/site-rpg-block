@@ -1,0 +1,120 @@
+/* Full-width game mode */
+.site-rpg-block--playing {
+	.site-rpg-card {
+		max-width: 100%;
+		border-radius: 8px;
+		padding: 12px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	/* Hide header during active gameplay */
+	.site-rpg-card__header {
+		display: none;
+	}
+
+	/* Hide XP bar during gameplay */
+	.site-rpg-card__xp {
+		display: none;
+	}
+
+	/* Hide main game button area */
+	.site-rpg-card__game {
+		display: none;
+	}
+
+	/* Compact stats during gameplay */
+	.site-rpg-card__stats {
+		margin-bottom: 8px;
+		padding: 8px;
+	}
+
+	/* Game screens */
+	.site-rpg-game-select,
+	.site-rpg-difficulty-select,
+	.site-rpg-class-select,
+	.site-rpg-game-start {
+		display: flex;
+		flex-direction: column;
+		margin-top: 8px;
+		padding: 16px;
+	}
+
+	/* Game canvas container */
+	.site-rpg-game {
+		display: flex;
+		flex-direction: column;
+		margin-top: 8px;
+	}
+
+	.site-rpg-game__canvas {
+		width: 100%;
+		height: auto;
+	}
+
+	.site-rpg-game__hud {
+		padding: 6px 10px;
+		font-size: 12px;
+	}
+
+	.site-rpg-game__controls {
+		padding: 6px;
+		gap: 8px;
+	}
+
+	/* Mobile controls - compact */
+	.site-rpg-mobile-controls {
+		margin-top: 8px;
+		padding: 12px;
+	}
+
+	.site-rpg-dpad {
+		width: 100px;
+		height: 100px;
+	}
+
+	.site-rpg-dpad__btn {
+		width: 34px;
+		height: 34px;
+		font-size: 14px;
+	}
+
+	.site-rpg-attack-btn {
+		width: 70px;
+		height: 70px;
+		font-size: 28px;
+	}
+
+	/* D20 controls - already compact */
+	.site-rpg-d20-controls {
+		margin-top: 8px;
+	}
+
+	/* Runner controls */
+	.site-rpg-runner-controls {
+		margin-top: 8px;
+		padding: 12px;
+	}
+
+	.site-rpg-jump-btn {
+		width: 80px;
+		height: 80px;
+		font-size: 12px;
+	}
+
+	/* Game over screen */
+	.site-rpg-game-over {
+		margin-top: 8px;
+		padding: 16px;
+
+		h4 {
+			font-size: 20px;
+			margin-bottom: 8px;
+		}
+	}
+
+	.site-rpg-game-over__xp {
+		font-size: 28px;
+		margin: 12px 0;
+	}
+}

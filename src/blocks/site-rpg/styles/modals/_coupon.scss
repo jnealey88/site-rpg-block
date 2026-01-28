@@ -1,0 +1,181 @@
+/* Coupon Reward Modal */
+.site-rpg-coupon-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.85);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 10000;
+	padding: 20px;
+	animation: couponFadeIn 0.3s ease-out;
+}
+
+@keyframes couponFadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.site-rpg-coupon-modal__content {
+	background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+	border-radius: 20px;
+	padding: 32px 40px;
+	text-align: center;
+	max-width: 400px;
+	width: 100%;
+	box-shadow:
+		0 20px 60px rgba(0, 0, 0, 0.5),
+		0 0 0 1px rgba(255, 255, 255, 0.1),
+		inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	animation: couponSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 4px;
+		background: linear-gradient(90deg, #f39c12, #e94560, #9b59b6, #3498db);
+	}
+}
+
+@keyframes couponSlideUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px) scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+.site-rpg-coupon-modal__icon {
+	font-size: 64px;
+	margin-bottom: 16px;
+	animation: couponBounce 0.6s ease-out 0.3s both;
+}
+
+@keyframes couponBounce {
+	0% {
+		transform: scale(0);
+	}
+	50% {
+		transform: scale(1.2);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.site-rpg-coupon-modal__title {
+	font-size: 24px;
+	font-weight: 700;
+	color: #f39c12;
+	margin: 0 0 12px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.site-rpg-coupon-modal__message {
+	font-size: 14px;
+	color: #8892b0;
+	margin: 0 0 24px;
+	line-height: 1.5;
+}
+
+.site-rpg-coupon-modal__code-wrapper {
+	background: rgba(0, 0, 0, 0.4);
+	border: 2px dashed #f39c12;
+	border-radius: 12px;
+	padding: 16px 24px;
+	margin-bottom: 20px;
+}
+
+.site-rpg-coupon-modal__code {
+	font-size: 28px;
+	font-weight: 900;
+	color: #fff;
+	letter-spacing: 3px;
+	font-family: 'Courier New', monospace;
+	text-shadow: 0 0 10px rgba(243, 156, 18, 0.5);
+	user-select: all;
+}
+
+.site-rpg-coupon-modal__copy {
+	display: block;
+	width: 100%;
+	padding: 14px 24px;
+	background: linear-gradient(135deg, #27ae60, #1e8449);
+	border: none;
+	border-radius: 8px;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	margin-bottom: 12px;
+	box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
+
+	&:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(39, 174, 96, 0.5);
+	}
+
+	&:active {
+		transform: translateY(0);
+	}
+}
+
+.site-rpg-coupon-modal__close {
+	display: block;
+	width: 100%;
+	padding: 12px 24px;
+	background: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 8px;
+	color: #8892b0;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.2s ease;
+
+	&:hover {
+		background: rgba(255, 255, 255, 0.15);
+		color: #fff;
+	}
+}
+
+/* Mobile adjustments for coupon modal */
+@media (max-width: 480px) {
+	.site-rpg-coupon-modal__content {
+		padding: 24px 20px;
+	}
+
+	.site-rpg-coupon-modal__icon {
+		font-size: 48px;
+	}
+
+	.site-rpg-coupon-modal__title {
+		font-size: 20px;
+	}
+
+	.site-rpg-coupon-modal__code {
+		font-size: 22px;
+		letter-spacing: 2px;
+	}
+
+	.site-rpg-coupon-modal__code-wrapper {
+		padding: 12px 16px;
+	}
+}

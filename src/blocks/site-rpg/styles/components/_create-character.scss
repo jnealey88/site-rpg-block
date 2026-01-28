@@ -1,0 +1,110 @@
+/**
+ * Create Character Prompt
+ * Shown to logged-in users who haven't created a character yet
+ */
+
+.site-rpg-card__create-character {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding: 16px;
+	margin: 16px 0;
+	background: linear-gradient(135deg, rgba(155, 89, 182, 0.15) 0%, rgba(52, 152, 219, 0.15) 100%);
+	border: 2px dashed rgba(155, 89, 182, 0.4);
+	border-radius: 12px;
+	text-align: center;
+
+	&-content {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+	}
+
+	&-icon {
+		font-size: 2rem;
+		animation: avatarFloat 3s ease-in-out infinite;
+	}
+
+	&-text {
+		text-align: left;
+	}
+
+	&-title {
+		margin: 0;
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: #fff;
+	}
+
+	&-desc {
+		margin: 4px 0 0;
+		font-size: 0.85rem;
+		color: #8892b0;
+	}
+
+	&-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		padding: 12px 24px;
+		font-size: 1rem;
+		font-weight: 600;
+		color: #fff;
+		background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+		border: 2px solid rgba(243, 156, 18, 0.5);
+		border-radius: 8px;
+		cursor: pointer;
+		transition: all 0.2s ease;
+
+		&:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(155, 89, 182, 0.4);
+		}
+
+		&:active {
+			transform: translateY(0);
+		}
+	}
+}
+
+/**
+ * Legacy Character Button
+ * Shown to existing characters without race/class
+ */
+.site-rpg-legacy-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	padding: 8px 14px;
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: #fff;
+	background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+	border: 2px solid rgba(243, 156, 18, 0.5);
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	animation: pulse 2s ease-in-out infinite;
+
+	&:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(243, 156, 18, 0.4);
+		animation: none;
+	}
+
+	&:active {
+		transform: translateY(0);
+	}
+}
+
+@keyframes pulse {
+	0%, 100% {
+		box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.4);
+	}
+	50% {
+		box-shadow: 0 0 0 8px rgba(243, 156, 18, 0);
+	}
+}

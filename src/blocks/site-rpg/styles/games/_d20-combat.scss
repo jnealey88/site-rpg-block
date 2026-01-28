@@ -1,0 +1,289 @@
+/* D20 Combat Controls - Compact Layout */
+.site-rpg-d20-controls {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 12px;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 8px;
+	margin-top: 12px;
+}
+
+/* Main action row: dice + button side by side */
+.site-rpg-d20-action-row {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+}
+
+.site-rpg-d20-dice-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+}
+
+.site-rpg-d20-turn-indicator {
+	padding: 4px 12px;
+	border-radius: 12px;
+	font-size: 10px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+
+	&--player {
+		background: linear-gradient(135deg, #27ae60, #1e8449);
+		color: #fff;
+	}
+
+	&--boss {
+		background: linear-gradient(135deg, #e74c3c, #c0392b);
+		color: #fff;
+	}
+}
+
+.site-rpg-d20-dice-area {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+}
+
+.site-rpg-d20-dice {
+	width: 50px;
+	height: 50px;
+	background: linear-gradient(135deg, #9b59b6, #8e44ad);
+	border: 2px solid #f39c12;
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 3px 12px rgba(155, 89, 182, 0.5);
+	transform: rotate(45deg);
+
+	&--rolling {
+		animation: diceShake 0.1s infinite;
+	}
+}
+
+.site-rpg-d20-dice__value {
+	font-size: 20px;
+	font-weight: 900;
+	color: #fff;
+	transform: rotate(-45deg);
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes diceShake {
+	0%, 100% { transform: rotate(45deg) scale(1); }
+	25% { transform: rotate(50deg) scale(1.05); }
+	75% { transform: rotate(40deg) scale(0.95); }
+}
+
+.site-rpg-d20-roll-result {
+	text-align: center;
+	min-height: 32px;
+}
+
+.site-rpg-d20-roll__formula {
+	display: block;
+	font-size: 10px;
+	color: #8892b0;
+	margin-bottom: 2px;
+}
+
+.site-rpg-d20-roll__outcome {
+	display: block;
+	font-size: 14px;
+	font-weight: 700;
+	text-transform: uppercase;
+
+	&--hit {
+		color: #27ae60;
+	}
+
+	&--miss {
+		color: #e74c3c;
+	}
+
+	&--crit {
+		color: #f39c12;
+		animation: pulse 0.5s ease-in-out 3;
+		text-shadow: 0 0 10px #f39c12;
+	}
+
+	&--defend {
+		color: #3498db;
+		text-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+	}
+
+	&--ability {
+		color: #9b59b6;
+		text-shadow: 0 0 10px rgba(155, 89, 182, 0.6);
+		animation: pulse 0.5s ease-in-out 2;
+	}
+}
+
+.site-rpg-d20-attack-btn {
+	padding: 12px 24px;
+	background: linear-gradient(135deg, #9b59b6, #8e44ad);
+	border: 2px solid #f39c12;
+	border-radius: 8px;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	box-shadow: 0 3px 12px rgba(155, 89, 182, 0.4);
+	white-space: nowrap;
+
+	&:hover:not(:disabled) {
+		transform: translateY(-2px);
+		box-shadow: 0 5px 16px rgba(155, 89, 182, 0.5);
+	}
+
+	&:active:not(:disabled) {
+		transform: translateY(0);
+	}
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+}
+
+.site-rpg-d20-defend-btn {
+	padding: 12px 24px;
+	background: linear-gradient(135deg, #3498db, #2980b9);
+	border: 2px solid #f39c12;
+	border-radius: 8px;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	box-shadow: 0 3px 12px rgba(52, 152, 219, 0.4);
+	white-space: nowrap;
+
+	&:hover:not(:disabled) {
+		transform: translateY(-2px);
+		box-shadow: 0 5px 16px rgba(52, 152, 219, 0.5);
+	}
+
+	&:active:not(:disabled) {
+		transform: translateY(0);
+	}
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+}
+
+.site-rpg-d20-action-buttons {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+}
+
+/* Compact combat log - inline style */
+.site-rpg-d20-combat-log {
+	width: 100%;
+	max-height: 60px;
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 6px;
+	overflow: hidden;
+	border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.site-rpg-d20-combat-log__entries {
+	padding: 6px 10px;
+	max-height: 60px;
+	overflow-y: auto;
+	font-size: 11px;
+	line-height: 1.4;
+
+	&::-webkit-scrollbar {
+		width: 4px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: rgba(255, 255, 255, 0.15);
+		border-radius: 2px;
+	}
+}
+
+.site-rpg-d20-combat-log__entry {
+	color: #a8b2d1;
+	padding: 1px 0;
+
+	&:last-child {
+		color: #ccd6f6;
+		font-weight: 500;
+	}
+
+	&--hit {
+		color: #27ae60;
+	}
+
+	&--miss {
+		color: #7f8c8d;
+		font-style: italic;
+	}
+
+	&--crit {
+		color: #f39c12;
+		font-weight: 700;
+		text-shadow: 0 0 4px rgba(243, 156, 18, 0.4);
+	}
+
+	&--ability {
+		color: #9b59b6;
+		font-style: italic;
+	}
+
+	&--heal {
+		color: #3498db;
+	}
+
+	&--victory {
+		color: #f39c12;
+		font-weight: 700;
+	}
+}
+
+/* Mobile adjustments for D20 controls */
+@media (max-width: 480px) {
+	.site-rpg-d20-action-row {
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.site-rpg-d20-dice-wrapper {
+		flex-direction: row;
+		gap: 12px;
+	}
+
+	.site-rpg-d20-dice {
+		width: 44px;
+		height: 44px;
+	}
+
+	.site-rpg-d20-dice__value {
+		font-size: 18px;
+	}
+
+	.site-rpg-d20-attack-btn {
+		padding: 10px 20px;
+		font-size: 13px;
+	}
+}

@@ -1,0 +1,58 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "site-rpg/character-card",
+	"version": "1.0.0",
+	"title": "Site RPG",
+	"category": "widgets",
+	"icon": "superhero",
+	"description": "Display your site as an RPG character that levels up with visitor interactions.",
+	"keywords": ["rpg", "game", "stats", "level", "xp", "gamification"],
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"attributes": {
+		"siteName": {
+			"type": "string",
+			"default": ""
+		},
+		"showMiniGame": {
+			"type": "boolean",
+			"default": true
+		},
+		"cardStyle": {
+			"type": "string",
+			"default": "classic"
+		},
+		"couponEnabled": {
+			"type": "boolean",
+			"default": false
+		},
+		"couponCode": {
+			"type": "string",
+			"default": ""
+		},
+		"couponMessage": {
+			"type": "string",
+			"default": "Congratulations! Here's your reward:"
+		},
+		"levelCoupons": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "object"
+			}
+		}
+	},
+	"textdomain": "site-rpg-block",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

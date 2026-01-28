@@ -1,0 +1,38 @@
+/* Runner Game Specific */
+.site-rpg-runner-controls {
+	display: none;
+	justify-content: center;
+	padding: 16px;
+	margin-top: 12px;
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 8px;
+
+	@media (max-width: 768px) {
+		display: flex;
+	}
+}
+
+.site-rpg-jump-btn {
+	width: 100px;
+	height: 100px;
+	background: linear-gradient(135deg, #3498db, #2980b9);
+	border: 3px solid #f39c12;
+	border-radius: 50%;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 700;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 4px 15px rgba(52, 152, 219, 0.5);
+	transition: all 0.1s ease;
+	-webkit-tap-highlight-color: transparent;
+	touch-action: manipulation;
+	text-transform: uppercase;
+
+	&:active {
+		transform: scale(0.9);
+		box-shadow: 0 2px 10px rgba(52, 152, 219, 0.4);
+	}
+}

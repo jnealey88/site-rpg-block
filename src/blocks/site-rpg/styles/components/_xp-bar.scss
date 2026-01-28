@@ -1,0 +1,61 @@
+/* XP Bar */
+.site-rpg-card__xp {
+	margin-bottom: 24px;
+}
+
+.site-rpg-card__xp-label {
+	display: flex;
+	justify-content: space-between;
+	font-size: 12px;
+	margin-bottom: 6px;
+	color: #8892b0;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.site-rpg-card__xp-bar {
+	height: 12px;
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 6px;
+	overflow: hidden;
+	position: relative;
+}
+
+.site-rpg-card__xp-fill {
+	height: 100%;
+	background: linear-gradient(90deg, #f39c12, #e74c3c);
+	border-radius: 6px;
+	transition: width 0.5s ease-out;
+	position: relative;
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 50%;
+		background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+	}
+}
+
+/* Level up animation */
+.site-rpg-card--level-up {
+	animation: pulse 0.5s ease-in-out 3;
+
+	.site-rpg-card__level {
+		animation: pulse 0.3s ease-in-out infinite;
+		color: #fff;
+		text-shadow: 0 0 10px #f39c12;
+	}
+}
+
+/* XP gain notification */
+.site-rpg-xp-popup {
+	position: absolute;
+	font-size: 18px;
+	font-weight: 700;
+	color: #27ae60;
+	pointer-events: none;
+	animation: xpFloat 1s ease-out forwards;
+}

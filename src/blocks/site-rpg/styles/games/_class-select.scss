@@ -1,0 +1,98 @@
+/* Class Selection */
+.site-rpg-class-select {
+	text-align: center;
+	padding: 16px;
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 8px;
+	margin-top: 12px;
+
+	h4 {
+		margin: 0 0 6px;
+		font-size: 16px;
+		color: #f39c12;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+}
+
+.site-rpg-class-select__hint {
+	margin: 0 0 12px;
+	font-size: 12px;
+	color: #8892b0;
+}
+
+.site-rpg-class-select__grid {
+	display: flex;
+	flex-direction: row;
+	gap: 8px;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.site-rpg-class-btn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+	padding: 10px 14px;
+	border: 2px solid rgba(255, 255, 255, 0.2);
+	border-radius: 8px;
+	background: rgba(255, 255, 255, 0.05);
+	color: #fff;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	flex: 1;
+	min-width: 90px;
+
+	&:hover {
+		background: rgba(255, 255, 255, 0.1);
+		transform: translateY(-2px);
+	}
+
+	&:active {
+		transform: translateY(0);
+	}
+
+	&--warrior {
+		border-color: rgba(231, 76, 60, 0.5);
+
+		&:hover {
+			border-color: #e74c3c;
+			box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+		}
+	}
+
+	&--mage {
+		border-color: rgba(155, 89, 182, 0.5);
+
+		&:hover {
+			border-color: #9b59b6;
+			box-shadow: 0 4px 12px rgba(155, 89, 182, 0.3);
+		}
+	}
+
+	&--rogue {
+		border-color: rgba(39, 174, 96, 0.5);
+
+		&:hover {
+			border-color: #27ae60;
+			box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+		}
+	}
+}
+
+.site-rpg-class-btn__icon {
+	font-size: 24px;
+}
+
+.site-rpg-class-btn__name {
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.site-rpg-class-btn__stats {
+	font-size: 9px;
+	color: #8892b0;
+}
